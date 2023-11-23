@@ -14,7 +14,7 @@ const videogameSchema = new Schema({
     type: Object,
     default: {
       file_name: "default-videogame-image.png",
-      path: "D:\\RESPALDO\\ESCUELA\\PW2\\PIA\\Bisonet\\BackEnd\\app\\storage\\default-profile-image.png",
+      path: `${__dirname}/../storage/default-videogame-image.png`,
     },
   },
   descripcion_videojuego: {
