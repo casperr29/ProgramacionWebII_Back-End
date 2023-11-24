@@ -77,8 +77,8 @@ class VideogameService {
     };
   }
 
-  //UPDATE PROFILE IMAGE
-  async updateProfilePic(videogameId, changes) {
+  //UPDATE VIDEOGAME IMAGE
+  async updateVideogamePic(videogameId, changes) {
     let videogame = await VideogameModel.findOne({
       _id: videogameId,
     });

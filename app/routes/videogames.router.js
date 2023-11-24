@@ -9,7 +9,6 @@ const {
   getVideogameDto,
 } = require("../DTOs/videogames.dto");
 
-const { encrypt, compare } = require("../utils/password.handler");
 const checkRolHandler = require("../middlewares/checkRol.handler");
 const authHandler = require("../middlewares/auth.handler");
 const { uploadMiddleware } = require("../utils/storage.handler");
@@ -80,7 +79,7 @@ router.get(
 
 //UPDATE VIDEOGAME IMAGE
 router.patch(
-  "/update_prof_pic/:videogameId",
+  "/update_videogame_pic/:videogameId",
   authHandler,
   checkRolHandler(true),
   validatorHandler(getVideogameDto, "params"),
@@ -96,7 +95,7 @@ router.patch(
         path: file.path,
       };
 
-      const { old, changed } = await service.updateProfilePic(
+      const { old, changed } = await service.updateVideogamePic(
         videogameId,
         photoBody
       );
