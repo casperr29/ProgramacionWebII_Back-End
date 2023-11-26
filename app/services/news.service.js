@@ -27,9 +27,10 @@ class NewsService {
   }
 
   // Método para obtener todas las noticias
-  async getAllNews() {
-    const news = await NewsModel.find();
-    return news.map((n) => new NewsDto(n));
+  async getAllNews(limit, filter) {
+    let news = await NewsModel.find(filter);
+    news = limit ? news.filter((item, index) => item && index < limit) : news;
+    return news;
   }
 
   // Método para actualizar una noticia

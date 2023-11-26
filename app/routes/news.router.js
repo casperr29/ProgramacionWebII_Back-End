@@ -36,7 +36,9 @@ router.get("/:id", async (req, res) => {
 // Ruta para obtener todas las noticias
 router.get("/", async (req, res) => {
   try {
-    const news = await newsService.getAllNews();
+    const { size } = req.query;
+    const filter = req.body;
+    const news = await newsService.getAllNews(size || 10, filter);
     res.json(news);
   } catch (err) {
     res.status(500).json({ message: err.message });
