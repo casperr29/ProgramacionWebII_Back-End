@@ -45,6 +45,18 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Ruta para obtener todas las noticias filtradas por titulo
+router.get("/search/", async (req, res) => {
+  try {
+    const { size } = req.query;
+    const {filterString} = req.body;
+    const news = await newsService.getNewsByTitle(size || 10, filterString);
+    res.json(news);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Ruta para actualizar una noticia por su ID
 router.patch("/:id", async (req, res) => {
   try {

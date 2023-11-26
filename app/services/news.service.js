@@ -33,6 +33,13 @@ class NewsService {
     return news;
   }
 
+   // Método para obtener todas las noticias
+   async getNewsByTitle(limit, filterString) {
+    let news = await NewsModel.find({ "titulo_noticia": { "$regex": filterString, "$options": "i" } });
+    news = limit ? news.filter((item, index) => item && index < limit) : news;
+    return news;
+  }
+
   // Método para actualizar una noticia
   async updateNews(id, titulo_noticia, contenido_noticia, videojuego_noticia) {
     const news = await NewsModel.findByIdAndUpdate(
