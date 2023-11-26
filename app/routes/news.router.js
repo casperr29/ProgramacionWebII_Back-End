@@ -46,10 +46,10 @@ router.get("/", async (req, res) => {
 });
 
 // Ruta para obtener todas las noticias filtradas por titulo
-router.get("/search/", async (req, res) => {
+router.get("/search/:filterString", async (req, res) => {
   try {
     const { size } = req.query;
-    const {filterString} = req.body;
+    const {filterString} = req.params;
     const news = await newsService.getNewsByTitle(size || 10, filterString);
     res.json(news);
   } catch (err) {
